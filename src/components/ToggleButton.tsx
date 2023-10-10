@@ -21,7 +21,7 @@ export const ToggleButton = () => {
       <ComponentsTooltip>
         <IconButton
           aria-label={
-            theme.palette.mode === "dark" ? "Set light theme" : "Set dark theme"
+            theme.palette.mode === "dark" ? "light theme" : "dark theme"
           }
           edge="end"
           sx={{ ml: 1 }}
