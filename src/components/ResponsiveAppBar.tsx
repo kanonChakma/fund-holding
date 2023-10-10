@@ -8,24 +8,25 @@ import MenuItem from "@mui/material/MenuItem";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { Link } from "react-router-dom";
+import NestedMenu from "./NestedMenu";
 import { ToggleButton } from "./ToggleButton";
 
 const pages_ = [
   {
-    menuTitle: "Home",
+    menuTitle: "HOME",
     pageURL: "/",
   },
   {
-    menuTitle: "Contact",
-    pageURL: "/contact",
+    menuTitle: "SECTOR SUMMARY",
+    pageURL: "/sector-summary",
   },
   {
-    menuTitle: "About",
-    pageURL: "/about",
+    menuTitle: "ETF LIST",
+    pageURL: "/etf-list",
   },
   {
-    menuTitle: "FAQ",
-    pageURL: "/faq",
+    menuTitle: "MUTUAL FUND LIST",
+    pageURL: "/mutual-list",
   },
 ];
 
@@ -45,7 +46,11 @@ const ResponsiveAppBar = () => {
   return (
     <AppBar
       position="static"
-      sx={{ background: "transparent", boxShadow: "none", padding: "20px" }}
+      sx={{
+        background: "transparent",
+        boxShadow: "none",
+        padding: "10px",
+      }}
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -94,7 +99,7 @@ const ResponsiveAppBar = () => {
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: "block", md: "none", width: "300px" },
+                display: { xs: "block", md: "none" },
               }}
             >
               {pages_.map((page, index) => {
@@ -105,9 +110,7 @@ const ResponsiveAppBar = () => {
                     onClick={handleCloseNavMenu}
                     sx={{
                       display: {
-                        width: "150px",
-                        justifyContent: "center",
-                        textDecoration: "none",
+                        width: "200px",
                       },
                     }}
                   >
@@ -115,13 +118,45 @@ const ResponsiveAppBar = () => {
                       key={index}
                       component={Link}
                       to={pageURL}
-                      color="primary"
+                      color="secondary"
                     >
                       {menuTitle}
                     </Typography>
                   </MenuItem>
                 );
               })}
+              <MenuItem
+                onClick={handleCloseNavMenu}
+                sx={{
+                  display: {
+                    width: "200px",
+                  },
+                }}
+              >
+                <Typography
+                  component={Link}
+                  to="/etf-holding"
+                  color="secondary"
+                >
+                  ETF HOLDING
+                </Typography>
+              </MenuItem>
+              <MenuItem
+                onClick={handleCloseNavMenu}
+                sx={{
+                  display: {
+                    width: "200px",
+                  },
+                }}
+              >
+                <Typography
+                  component={Link}
+                  to="/mutual-holding"
+                  color="secondary"
+                >
+                  MUTUAL FUND HOLDING
+                </Typography>
+              </MenuItem>
             </Menu>
           </Box>
 
@@ -148,7 +183,7 @@ const ResponsiveAppBar = () => {
           <Box
             m={1}
             display="flex"
-            justifyContent="flex-end" // flex-start -> for left , center-> center, flex-end-> for left
+            justifyContent="flex-end"
             alignItems="flex-end"
             sx={{
               flexGrow: 1,
@@ -159,7 +194,7 @@ const ResponsiveAppBar = () => {
               const { menuTitle, pageURL } = page;
               return (
                 <Button
-                  sx={{ mr: 5 }}
+                  sx={{ mr: 2 }}
                   key={index}
                   component={Link}
                   to={pageURL}
@@ -171,6 +206,23 @@ const ResponsiveAppBar = () => {
               );
             })}
           </Box>
+
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+            }}
+          >
+            <NestedMenu
+              label="ETF HOLDING"
+              items={[{ label: "Historical", route: "/etf-holding" }]}
+            />
+            <NestedMenu
+              label="MUTUAL FUND HOLDING"
+              items={[{ label: "Historical", route: "/mutual-holding" }]}
+            />
+          </Box>
+
           <ToggleButton />
         </Toolbar>
       </Container>

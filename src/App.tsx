@@ -4,11 +4,12 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { ColorContext } from "./ColorContext";
 import ResponsiveAppBar from "./components/ResponsiveAppBar";
-import StickyFooter from "./components/StickyFooter";
-import { About } from "./pages/About";
-import { Contact } from "./pages/Contact";
-import { FAQ } from "./pages/FAQ";
+import { EtfHolding } from "./pages/EtfHolding";
+import { EtfList } from "./pages/EtfList";
 import { Home } from "./pages/Home";
+import { MutualHolding } from "./pages/MutualHolding";
+import { MutualList } from "./pages/MutualList";
+import { SectorSummary } from "./pages/SectorSummary";
 import { themeSettings } from "./theme";
 
 function App() {
@@ -33,11 +34,12 @@ function App() {
         <ResponsiveAppBar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/faq" element={<FAQ />} />
+          <Route path="/sector-summary" element={<SectorSummary />} />
+          <Route path="/etf-list" element={<EtfList />} />
+          <Route path="/etf-holding" element={<EtfHolding />} />
+          <Route path="/mutual-holding" element={<MutualHolding />} />
+          <Route path="/mutual-list" element={<MutualList />} />
         </Routes>
-        <StickyFooter />
       </ThemeProvider>
     </ColorContext.Provider>
   );

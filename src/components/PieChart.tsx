@@ -31,6 +31,8 @@ export const data = {
   ],
 };
 
-export function PieChart() {
+const PieChart = () => {
   return <Pie data={data} />;
-}
+};
+
+export default PieChart;
